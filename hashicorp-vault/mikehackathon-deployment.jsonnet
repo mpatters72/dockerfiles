@@ -13,13 +13,6 @@
       matchLabels: {
         app: $.deploymentName
       }
-    }
-  },
-    strategy: {
-      type: "RollingUpdate",
-      rollingUpdate: {
-        maxUnavailable: 0
-      }
     },
     template: {
       metadata: {
@@ -32,7 +25,14 @@
           role: "secretvault",
           ttl: "5760m"
         }
-      },      
+      }      
+  },
+    strategy: {
+      type: "RollingUpdate",
+      rollingUpdate: {
+        maxUnavailable: 0
+      }
+    },
       spec: {
         containers: [
           {
@@ -44,7 +44,6 @@
           }
         ]
      }      
-      
-  }
+  }   
   
 }
