@@ -9,9 +9,10 @@
   },
   spec: {
     replicas: 1,
-    selector: {
-      matchLabels: {
-        app: $.deploymentName
+    strategy: {
+      type: "RollingUpdate",
+      rollingUpdate: {
+        maxUnavailable: 0
       }
     },
     template: {
@@ -25,25 +26,19 @@
           role: "secretvault",
           ttl: "5760m"
         }
-      }      
-  },
-    strategy: {
-      type: "RollingUpdate",
-      rollingUpdate: {
-        maxUnavailable: 0
-      }
-    },
+      },         
       spec: {
         containers: [
           {
             name: $.appName,
             image: "registry.dev.databricks.com/mpatters72/" + $.version,
             command: [
-              "--port=8300:8300"
+              "-p 8300:8300"
             ]
-          }
+         }
         ]
      }      
-  }   
+  }
   
+}
 }
