@@ -33,7 +33,7 @@
             name: $.appName,
             image: "registry.dev.databricks.com/mpatters72/" + $.version,
             command: [
-              "-p 8300:8300"
+              "--port=8300:8300"
             ]
          }
         ]
