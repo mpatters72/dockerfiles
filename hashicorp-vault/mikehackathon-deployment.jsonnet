@@ -32,9 +32,11 @@
           {
             name: $.appName,
             image: "registry.dev.databricks.com/mpatters72/" + $.version,
-            command: [
-              "--port=8300:8300"
-            ]
+            ports: [{
+              containerPort: 8300,
+              name: $.appName,
+              protocol: "TCP"
+            }]
          }
         ]
      }      
